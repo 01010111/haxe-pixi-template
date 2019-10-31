@@ -1,0 +1,8 @@
+-lib pixijs
+-lib zerolib
+-lib gsap
+-lib WebFont
+-cp src/
+-main App
+-dce full
+-js bin/app.js
