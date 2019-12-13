@@ -1,3 +1,4 @@
+import pixi.core.display.Container;
 import zero.utilities.SyncedSin;
 import zero.utilities.ECS;
 import zero.utilities.Timer;
@@ -19,7 +20,7 @@ class App extends pixi.core.Application {
 		var load_assets = () -> {
 			var loader = new Loader();
 			loader.add(assets.remove_duplicates());
-			loader.on('complete', () -> i = start());
+			loader.on('complete', () -> start());
 			loader.load();
 		}
 		fonts.length == 0 ? load_assets() : WebFontLoader.load({
@@ -27,6 +28,10 @@ class App extends pixi.core.Application {
 			active: load_assets
 		});
 	}
+
+	public var world:Container;
+	public var width:Float;
+	public var height:Float;
 
 	public function new() {
 		super({
@@ -42,6 +47,9 @@ class App extends pixi.core.Application {
 			legacy: false,
 			transparent: false
 		});
+		i = this;
+		width = Browser.document.documentElement.clientWidth;
+		height = Browser.document.documentElement.clientHeight;
 		// Update
 		((?_) -> ECS.tick(_)).listen('update');
 		((?_) -> SyncedSin.update(_)).listen('update');
@@ -49,9 +57,11 @@ class App extends pixi.core.Application {
 		Browser.window.requestAnimationFrame(UpdateManager.update);
 		// Resize
 		((?_) -> renderer.resize(_.width, _.height)).listen('resize');
-		Browser.window.addEventListener('resize', () -> 'resize'.dispatch({ width: Browser.document.documentElement.clientWidth, height: Browser.document.documentElement.clientHeight }));
+		Browser.window.addEventListener('resize', () -> 'resize'.dispatch({ width: width = Browser.document.documentElement.clientWidth, height: height = Browser.document.documentElement.clientHeight }));
 		// Add view
 		Browser.document.body.appendChild(view);
+		world = new Container();
+		stage.addChild(world);
 		create();
 	}
 
