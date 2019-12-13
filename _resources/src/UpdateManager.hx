@@ -1,13 +1,13 @@
-package util;
-
 import js.Browser;
 import zero.utilities.Timer;
+
+using zero.utilities.EventBus;
 
 class UpdateManager {
 	static var last = 0.0;
 	public static function update(time:Float) {
 		var dt = get_dt(time);
-		Timer.update(dt);
+		'update'.dispatch(dt);
 		Browser.window.requestAnimationFrame(update);
 	}
 	static function get_dt(time:Float):Float {

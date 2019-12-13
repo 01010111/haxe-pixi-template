@@ -3,6 +3,9 @@
 -lib gsap
 -lib WebFont
 -cp src/
--main App
+-cp _resources/src/
+-main Game
 -dce full
 -js bin/app.js
+-cmd cp -R _resources/export/ bin/
+-cmd cp -R assets/ bin/assets/
