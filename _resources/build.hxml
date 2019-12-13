@@ -1,0 +1,15 @@
+# libs
+-lib pixijs
+-lib zerolib
+-lib gsap
+-lib WebFont
+# class paths
+-cp _resources/src/
+-cp src/
+# build
+-main Game
+-dce full
+-js bin/app.js
+# move assets and resources
+-cmd cp -R _resources/export/ bin/
+-cmd cp -R assets/ bin/assets/
