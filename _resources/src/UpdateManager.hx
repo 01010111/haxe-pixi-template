@@ -1,5 +1,4 @@
 import js.Browser;
-import zero.utilities.Timer;
 
 using zero.utilities.EventBus;
 
