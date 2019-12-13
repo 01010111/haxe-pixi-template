@@ -43,12 +43,12 @@ class App extends pixi.core.Application {
 			transparent: false
 		});
 		// Update
-		((?_) -> ECS.tick(_)).register_listener('update');
-		((?_) -> SyncedSin.update(_)).register_listener('update');
-		((?_) -> Timer.update(_)).register_listener('update');
+		((?_) -> ECS.tick(_)).listen('update');
+		((?_) -> SyncedSin.update(_)).listen('update');
+		((?_) -> Timer.update(_)).listen('update');
 		Browser.window.requestAnimationFrame(UpdateManager.update);
 		// Resize
-		((?_) -> renderer.resize(_.width, _.height)).register_listener('resize');
+		((?_) -> renderer.resize(_.width, _.height)).listen('resize');
 		Browser.window.addEventListener('resize', () -> 'resize'.dispatch({ width: Browser.document.documentElement.clientWidth, height: Browser.document.documentElement.clientHeight }));
 		// Add view
 		Browser.document.body.appendChild(view);

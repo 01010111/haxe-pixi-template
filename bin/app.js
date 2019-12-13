@@ -9,20 +9,20 @@ function $extend(from, fields) {
 var App = function() {
 	var _gthis = this;
 	PIXI.Application.call(this,{ width : window.document.documentElement.clientWidth, height : window.document.documentElement.clientHeight, backgroundColor : 0, antialias : true, roundPixels : true, clearBeforeRender : true, forceFXAA : true, powerPreference : "high-performance", autoResize : true, legacy : false, transparent : false});
-	zero_utilities_EventBus.register_listener(function(_) {
+	zero_utilities_EventBus.listen(function(_) {
 		zero_utilities_ECS.tick(_);
 		return;
 	},"update");
-	zero_utilities_EventBus.register_listener(function(_1) {
+	zero_utilities_EventBus.listen(function(_1) {
 		zero_utilities_SyncedSin.update(_1);
 		return;
 	},"update");
-	zero_utilities_EventBus.register_listener(function(_2) {
+	zero_utilities_EventBus.listen(function(_2) {
 		zero_utilities_Timer.update(_2);
 		return;
 	},"update");
 	window.requestAnimationFrame(UpdateManager.update);
-	zero_utilities_EventBus.register_listener(function(_3) {
+	zero_utilities_EventBus.listen(function(_3) {
 		_gthis.renderer.resize(_3.width,_3.height);
 		return;
 	},"resize");
@@ -383,7 +383,7 @@ zero_utilities_EventBus.dispatch = function(name,data) {
 		}
 	}
 };
-zero_utilities_EventBus.register_listener = function(listener,name) {
+zero_utilities_EventBus.listen = function(listener,name) {
 	var key = Std.string(name);
 	var _this = zero_utilities_EventBus.listeners;
 	if(!(__map_reserved[key] != null ? _this.existsReserved(key) : _this.h.hasOwnProperty(key))) {
