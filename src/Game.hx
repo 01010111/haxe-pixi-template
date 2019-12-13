@@ -15,4 +15,8 @@ class Game extends App {
 	override function create() {
 		trace('hello world');
 	}
+
+	override function update(?dt:Float) {
+		
+	}
 }

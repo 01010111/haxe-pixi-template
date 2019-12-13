@@ -54,6 +54,7 @@ class App extends pixi.core.Application {
 		((?_) -> ECS.tick(_)).listen('update');
 		((?_) -> SyncedSin.update(_)).listen('update');
 		((?_) -> Timer.update(_)).listen('update');
+		update.listen('update');
 		Browser.window.requestAnimationFrame(UpdateManager.update);
 		// Resize
 		((?_) -> renderer.resize(_.width, _.height)).listen('resize');
@@ -66,6 +67,10 @@ class App extends pixi.core.Application {
 	}
 
 	public function create() {
+		// Override me!
+	}
+
+	public function update(?dt:Float) {
 		// Override me!
 	}
 
