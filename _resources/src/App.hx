@@ -1,3 +1,4 @@
+import zero.utilities.Color;
 import pixi.core.display.Container;
 import zero.utilities.SyncedSin;
 import zero.utilities.ECS;
@@ -14,6 +15,7 @@ class App extends pixi.core.Application {
 	public static var i:App;
 	static var fonts:Array<String> = [];
 	static var assets:Array<String> = [];
+	static var bg_color:Color = Color.BLACK;
 
 	static function main(start:Void -> App) {
 		// Load fonts, then load assets, then start new app
@@ -37,7 +39,7 @@ class App extends pixi.core.Application {
 		super({
 			width: Browser.document.documentElement.clientWidth,
 			height: Browser.document.documentElement.clientHeight,
-			backgroundColor: 0x000000,
+			backgroundColor: bg_color.to_hex_24(),
 			antialias: true,
 			roundPixels: true,
 			clearBeforeRender: true,
