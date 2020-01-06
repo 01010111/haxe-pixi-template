@@ -1,4 +1,7 @@
-/*@font-face{
-    font-family:"[FONT NAME]";
-    src:url("[FONT SOURCE]") format("[FONT FORMAT]");
-}*/
+@font-face {
+	font-family: 'oduda';
+	src: url('../assets/fonts/oduda.eot');
+	src: local('☺'), url('../assets/fonts/oduda.woff') format('woff'), url('../assets/fonts/oduda.ttf') format('truetype'), url('../assets/fonts/oduda.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

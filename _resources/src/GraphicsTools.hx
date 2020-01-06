@@ -11,7 +11,7 @@ class GraphicsTools {
 	}
 	public static function fill_rect(graphic:Graphics, color:Color, x:Float, y:Float, width:Float, height:Float, radius:Float = 0):Graphics {
 		graphic.beginFill(color.to_hex_24(), color.alpha);
-		graphic.drawRoundedRect(x, y, width, height, radius);
+		radius == 0 ? graphic.drawRect(x, y, width, height) : graphic.drawRoundedRect(x, y, width, height, radius);
 		graphic.endFill();
 		return graphic;
 	}
@@ -34,7 +34,7 @@ class GraphicsTools {
 	}
 	public static function rect(graphic:Graphics, color:Color, x:Float, y:Float, width:Float, height:Float, radius:Float = 0, line_width:Float = 1, alignment:LineAlign = CENTER):Graphics {
 		graphic.lineStyle(line_width, color.to_hex_24(), color.alpha, cast alignment);
-		graphic.drawCircle(x, y, radius);
+		radius == 0 ? graphic.drawRect(x, y, width, height) : graphic.drawRoundedRect(x, y, width, height, radius);
 		graphic.lineStyle();
 		return graphic;
 	}
