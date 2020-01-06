@@ -1,6 +1,8 @@
 import js.html.KeyboardEvent;
 import js.Browser;
 
+using zero.utilities.EventBus;
+
 class Keys {
 
 	static var state:Map<Key, Bool>;
@@ -109,16 +111,9 @@ class Keys {
 	public static function init() {
 		state = [for (key in Type.allEnums(Key)) key => false];
 		last = [for (key in Type.allEnums(Key)) key => false];
-		Browser.document.addEventListener('keydown', (e:KeyboardEvent) -> {
-			if (!keycodes.exists(e.keyCode)) return;
-			last.set(keycodes[e.keyCode], state[keycodes[e.keyCode]]);
-			state.set(keycodes[e.keyCode], true);
-		});
-		Browser.document.addEventListener('keydown', (e:KeyboardEvent) -> {
-			if (!keycodes.exists(e.keyCode)) return;
-			last.set(keycodes[e.keyCode], state[keycodes[e.keyCode]]);
-			state.set(keycodes[e.keyCode], false);
-		});
+		Browser.document.addEventListener('keydown', (e:KeyboardEvent) -> if (keycodes.exists(e.keyCode)) state.set(keycodes[e.keyCode], true));
+		Browser.document.addEventListener('keyup', (e:KeyboardEvent) -> if (keycodes.exists(e.keyCode)) state.set(keycodes[e.keyCode], false));
+		((?_) -> for (key => bool in state) last.set(key, bool)).listen('postupdate');
 	}
 
 	public static function pressed(key:Key) return state[key];

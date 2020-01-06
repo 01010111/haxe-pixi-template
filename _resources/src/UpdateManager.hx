@@ -7,6 +7,7 @@ class UpdateManager {
 	public static function update(time:Float) {
 		var dt = get_dt(time);
 		'update'.dispatch(dt);
+		'postupdate'.dispatch(dt);
 		Browser.window.requestAnimationFrame(update);
 	}
 	static function get_dt(time:Float):Float {
