@@ -27,7 +27,11 @@ class App extends pixi.core.Application {
 		}
 		fonts.length == 0 ? load_assets() : WebFontLoader.load({
 			custom: { families: fonts, urls: ['include/fonts.css'] },
-			active: load_assets
+			active: load_assets,
+			inactive: () -> {
+				trace('Fonts not loaded!');
+				load_assets();
+			},
 		});
 	}
 
