@@ -3,6 +3,7 @@ import App;
 class Game extends App {
 
 	static function main() {
+		Keys.init();
 		App.assets = [
 			// list assets here!
 		];
