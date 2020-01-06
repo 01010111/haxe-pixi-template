@@ -1,3 +1,4 @@
+import objects.Card;
 import App;
 
 class Game extends App {
@@ -5,16 +6,21 @@ class Game extends App {
 	static function main() {
 		Keys.init();
 		App.assets = [
-			// list assets here!
+			'assets/images/club.png',
+			'assets/images/diamond.png',
+			'assets/images/heart.png',
+			'assets/images/spade.png',
+			'assets/images/star.png',
 		];
 		App.fonts = [
-			// liste font family names here!
+			'oduda'
 		];
 		App.main(() -> new Game());
 	}
 
 	override function create() {
-		trace('hello world');
+		stage.add(new objects.Scene());
+		((?_) -> if (Keys.just_pressed(F)) Card.revealed = !Card.revealed).listen('update');
 	}
 
 	override function update(?dt:Float) {
